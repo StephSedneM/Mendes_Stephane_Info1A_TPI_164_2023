@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %} Effacer un sujet (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Effacer une sujet ...mais pour de bon!!!
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form_delete.hidden_tag() }}
+
+					{% if data_films_associes %}
+
+					{% else %}
+
+					{% endif %}
+					{% if data_films_associes %}
+						<thead>
+							<tr>
+								<th>
+
+								</th>
+							</tr>
+						</thead>
+						{% for row in data_films_associes %}
+							<tbody>
+								<tr>
+									<td>
+										{{ row.nom_sujet }}
+									</td>
+
+
+
+									<td>{{row.id_sujet}}</td>
+								</tr>
+							</tbody>
+						{% endfor %}
+					{% endif %}
+				</table>
+
+
+				<div class="form-group">
+					<p>
+						{{ form_delete.nom_sujet_delete_wtf.label }}<br>
+						{{ form_delete.nom_sujet_delete_wtf(size=32, readonly=true) }}<br>
+						{% for error in form_delete.nom_sujet_delete_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				{{ form_delete.submit_btn_conf_del(class="btn btn-info") }}
+
+				{% if btn_submit_del %}
+					{{ form_delete.submit_btn_del(class="btn btn-danger") }}
+				{% endif %}
+
+				{{ form_delete.submit_btn_annuler(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

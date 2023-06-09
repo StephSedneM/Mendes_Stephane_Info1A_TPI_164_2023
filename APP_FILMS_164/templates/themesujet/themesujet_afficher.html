@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %} Afficher thème/sujet {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                Thème/Sujet
+            </p>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr class="table-dark">
+                        <th class="align-middle">
+                            ID
+                        </th>
+                        <th class="align-middle">
+                            Nom du thème
+                        </th>
+                        <th class="align-middle">
+                            Nom du sujet
+                        </th>
+                        <th class="align-middle">
+                            Pour ajouter
+                        </th>
+                        <th class="align-middle">
+                            Pour modifier
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if data %}
+                        {% for row in data %}
+                        <tr>
+                            <td class="align-middle">
+                                {{ row.id_theme_avoir_sujet }}
+                            </td>
+                            <td class="align-middle">
+                                {{ row.Nom_Theme }}
+                            </td>
+                            <td class="align-middle">
+                                {{ row.Nom_sujet }}
+                            </td>
+                            <td class="text-center" class="align-middle">
+                                <a class="btn btn-primary" href="{{ url_for('themesujet_ajouter_wtf') }}" role="button">Ajouter</a>
+                            </td>
+                            <td class="text-center" class="align-middle">
+                                <a class="btn btn-warning" href="{{ url_for('themesujet_update_wtf', id_theme_avoir_sujet_btn_edit_html=row.id_theme_avoir_sujet) }}" role="button">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5">
+                                Aucun thème avec un sujet.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% if not data %}
+            <a class="btn btn-primary" href="{{ url_for('themesujet_ajouter_wtf') }}" role="button">Ajouter</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

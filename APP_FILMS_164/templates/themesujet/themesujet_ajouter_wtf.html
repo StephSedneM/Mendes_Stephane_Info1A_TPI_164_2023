@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} Ajouter un thème avec un sujet (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					<p>
+						{{ form.nom_theme_wtf.label }}<br>
+						{{ form.nom_theme_wtf(size=32) }}<br>
+						{% for error in form.nom_theme_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.nom_sujet_wtf.label }}<br>
+						{{ form.nom_sujet_wtf(size=32) }}<br>
+						{% for error in form.nom_sujet_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				{{ form.submit(class="btn btn-primary") }}
+				</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
