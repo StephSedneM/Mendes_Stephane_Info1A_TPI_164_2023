@@ -47,7 +47,6 @@ def themesujet_afficher(order_by, id_theme_avoir_sujet_sel):
                         ORDER BY theme_avoir_sujet.id_theme_avoir_sujet DESC
                     """
 
-
                     mc_afficher.execute(strsql_themesujet_afficher)
 
                 data_themesujet = mc_afficher.fetchall()
