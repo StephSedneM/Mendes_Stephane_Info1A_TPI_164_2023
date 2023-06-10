@@ -110,7 +110,7 @@ def sujet_ajouter_wtf():
                 valeurs_insertion_dictionnaire = {"value_Nom_sujet": Nom_sujet_wtf}
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_sujet = """INSERT INTO t_sujet (id_sujet,Nom_sujet) VALUES (NULL, %(value_Nom_sujet)s, %(Value_Prenom_sujet)s) """
+                strsql_insert_sujet = """INSERT INTO t_sujet (id_sujet,Nom_sujet) VALUES (NULL, %(value_Nom_sujet)s) """
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_sujet, valeurs_insertion_dictionnaire)
 
@@ -168,7 +168,7 @@ def sujet_update_wtf():
             # Puis la convertir en lettres minuscules.
 
             nom_sujet_update = form_update.nom_sujet_update_wtf.data
-            prenom_sujet_update = form_update.nom_sujet_update_wtf.data
+
 
             valeur_update_dictionnaire = {"value_id_sujet": id_sujet_update,
                                           "value_Nom_sujet": nom_sujet_update,
@@ -189,7 +189,7 @@ def sujet_update_wtf():
             return redirect(url_for('sujet_afficher', order_by="ASC", id_sujet_sel=id_sujet_update))
         elif request.method == "GET":
             # Opération sur la BD pour récupérer "id_sujet" et "intitule_sujet" de la "t_sujet"
-            str_sql_id_sujet = "SELECT id_sujet, nom_sujet, prenom_sujet FROM t_sujet " \
+            str_sql_id_sujet = "SELECT id_sujet, nom_sujet FROM t_sujet " \
                                "WHERE id_sujet = %(value_id_sujet)s"
             valeur_select_dictionnaire = {"value_id_sujet": id_sujet_update}
             with DBconnection() as mybd_conn:
@@ -201,7 +201,7 @@ def sujet_update_wtf():
 
             # Afficher la valeur sélectionnée dans les champs du formulaire "sujet_update_wtf.html"
             form_update.nom_sujet_update_wtf.data = data_name_sujet["nom_sujet"]
-            form_update.prenom_sujet_wtf_essai.data = data_name_sujet["prenom_sujet"]
+
 
 
     except Exception as Exception_sujet_update_wtf:
@@ -293,7 +293,7 @@ def sujet_delete_wtf():
                 session['data_films_attribue_sujet_delete'] = data_films_attribue_sujet_delete
 
                 # Opération sur la BD pour récupérer "id_sujet" et "intitule_sujet" de la "t_sujet"
-                str_sql_id_sujet = "SELECT id_sujet, Nom_sujet, Prenom_sujet FROM t_sujet WHERE id_sujet = %(value_id_sujet)s"
+                str_sql_id_sujet = "SELECT id_sujet, Nom_sujet FROM t_sujet WHERE id_sujet = %(value_id_sujet)s"
 
                 mydb_conn.execute(str_sql_id_sujet, valeur_select_dictionnaire)
                 # Une seule valeur est suffisante "fetchone()",
