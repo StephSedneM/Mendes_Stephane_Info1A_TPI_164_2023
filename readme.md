@@ -51,7 +51,7 @@ Démarrer le serveur MySql (Laragon(heidi.sql), uwamp ou xamp ou mamp, etc.))
 
 •	Dans “PyCharm”, importer MA BD à partir du fichier DUMP
 
-•	Ouvrir le fichier APP_ETAM_164/database/1_ImportationDumpSql.py
+•	Ouvrir le fichier APP_FILMS_164/database/1_ImportationDumpSql.py
 
 •	Cliquer avec le bouton droit sur l’onglet de ce fichier et choisir “run” (CTRL-MAJ-F10)
 
