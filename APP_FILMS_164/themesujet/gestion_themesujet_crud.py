@@ -87,7 +87,7 @@ def themesujet_ajouter_wtf():
                 print("valeurs_insertion_dictionnaire", valeurs_insertion_dictionnaire)
 
                 strsql_insertheme_avoir_sujet = """
-                    INSERT INTO theme_avoir_sujet ( fk_theme, fk_sujet)
+                    INSERT INTO theme_avoir_sujet ( Fk_theme, Fk_sujet)
                     SELECT t_theme.id_theme, t_sujet.id_sujet
                      FROM t_theme,t_sujet
                     WHERE t_theme.Nom_theme = %(value_nom_theme)s
