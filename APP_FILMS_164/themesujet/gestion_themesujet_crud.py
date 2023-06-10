@@ -87,9 +87,11 @@ def themesujet_ajouter_wtf():
                 print("valeurs_insertion_dictionnaire", valeurs_insertion_dictionnaire)
 
                 strsql_insertheme_avoir_sujet = """
-                    INSERT INTO theme_avoir_sujet (id_theme_avoir_sujet, fk_theme, fk_sujet)
-                    VALUES (NULL, (SELECT id_theme FROM t_theme WHERE Nom_theme = %(value_nom_theme)s), 
-                                 (SELECT id_sujet FROM t_sujet WHERE Nom_sujet = %(value_nom_sujet)s))
+                    INSERT INTO theme_avoir_sujet ( fk_theme, fk_sujet)
+                    SELECT t_theme.id_theme, t_sujet.id_sujet
+                     FROM t_theme,t_sujet
+                    WHERE t_theme.Nom_theme = %(value_nom_theme)s
+                    AND t_sujet.Nom_sujet = %(value_nom_sujet)s
                 """
 
                 with DBconnection() as mconn_bd:
