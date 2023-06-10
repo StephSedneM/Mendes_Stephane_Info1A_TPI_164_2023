@@ -145,15 +145,15 @@ def personne_update_wtf():
             # Puis la convertir en lettres minuscules.
 
             nom_personne_update = form_update.nom_personne_update_wtf.data
-            prenom_personne_update = form_update.nom_personne_update_wtf.data
+            prenom_personne_update = form_update.prenom_personne_wtf_essai.data
 
             valeur_update_dictionnaire = {"value_id_personne": id_personne_update,
                                           "value_Nom_personne": nom_personne_update,
-                                          "value_Prenom_personne_essai": prenom_personne_update,
+                                          "value_Prenom_personne": prenom_personne_update,
                                           }
             print("valeur_update_dictionnaire ", valeur_update_dictionnaire)
 
-            str_sql_update_id_personne = """UPDATE t_personnes SET Nom_personne = %(value_Nom_personne)s 
+            str_sql_update_id_personne = """UPDATE t_personnes SET Nom_personne = %(value_Nom_personne)s, Prenom_personne = %(value_Prenom_personne)s 
                       WHERE id_personne = %(value_id_personne)s """
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_id_personne, valeur_update_dictionnaire)
