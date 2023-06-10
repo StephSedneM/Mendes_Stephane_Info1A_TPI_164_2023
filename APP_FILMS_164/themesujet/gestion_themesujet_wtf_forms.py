@@ -4,9 +4,9 @@
     Gestion des formulaires avec WTF
 """
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField
+from wtforms import StringField
 from wtforms import SubmitField
-from wtforms.validators import Length, InputRequired, DataRequired
+from wtforms.validators import Length
 from wtforms.validators import Regexp
 
 
