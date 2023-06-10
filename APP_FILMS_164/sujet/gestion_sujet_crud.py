@@ -103,10 +103,6 @@ def sujet_ajouter_wtf():
                 Nom_sujet_wtf = form.nom_sujet_wtf.data
                 Nom_sujet = Nom_sujet_wtf.lower()
 
-
-
-
-
                 valeurs_insertion_dictionnaire = {"value_Nom_sujet": Nom_sujet_wtf}
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 

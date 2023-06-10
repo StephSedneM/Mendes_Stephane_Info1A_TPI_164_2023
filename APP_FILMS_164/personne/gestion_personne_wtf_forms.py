@@ -16,7 +16,7 @@ class FormWTFAjouterPersonne(FlaskForm):
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
     nom_personne_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    nom_personne_wtf = StringField("Inserez le Nom", validators=[Length(min=2, max=30, message="min 2 max 20"),
+    nom_personne_wtf = StringField("Inserez le Nom", validators=[Length(min=2, max=30, message="min 2 max 30"),
                                                                    Regexp(nom_personne_regexp,
                                                                     message="Bien Essayé, mais juste des lettres stp")
                                          ])

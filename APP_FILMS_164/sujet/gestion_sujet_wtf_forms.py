@@ -10,25 +10,23 @@ from wtforms.validators import Length, InputRequired, DataRequired
 from wtforms.validators import Regexp
 
 
+
 class FormWTFAjoutersujet(FlaskForm):
     """
         Dans le formulaire "sujet_ajouter_wtf.html" on impose que le champ soit rempli.
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
     nom_sujet_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    nom_sujet_wtf = StringField("Inserez le Titre du Sujet", validators=[Length(min=2, max=30, message="min 2 max 20"),
+    nom_sujet_wtf = StringField("Inserez le Titre du Sujet", validators=[Length(min=2, max=50, message="min 2 max 50"),
                                                                    Regexp(nom_sujet_regexp,
                                                                     message="Bien Essayé, mais juste des lettres stp")
                                          ])
-
-
-
 
     submit = SubmitField("Valider")
 
 class FormWTFUpdatesujet(FlaskForm):
     nom_sujet_update_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    nom_sujet_update_wtf = StringField("Inserer le Nom", validators=[Length(min=2, max=20, message=""),
+    nom_sujet_update_wtf = StringField("Inserer le Nom", validators=[Length(min=2, max=50, message=""),
                                                                        Regexp(nom_sujet_update_regexp,
                                                                               message="Essaye Encore mais que avec des lettres")
                                                                        ])
