@@ -16,7 +16,7 @@ class FormWTFAjoutersujet(FlaskForm):
         Dans le formulaire "sujet_ajouter_wtf.html" on impose que le champ soit rempli.
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
-    nom_sujet_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    nom_sujet_regexp =r"^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ\s]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ\s]+$"
     nom_sujet_wtf = StringField("Inserez le Titre du Sujet", validators=[Length(min=2, max=50, message="min 2 max 50"),
                                                                    Regexp(nom_sujet_regexp,
                                                                     message="Bien Essayé, mais juste des lettres stp")
