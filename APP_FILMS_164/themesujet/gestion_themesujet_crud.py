@@ -24,27 +24,27 @@ def themesujet_afficher(order_by, id_theme_avoir_sujet_sel):
             with DBconnection() as mc_afficher:
                 if order_by == "ASC" and id_theme_avoir_sujet_sel == 0:
                     strsql_themesujet_afficher = """
-                        SELECT theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
-                        FROM theme_avoir_sujet
-                        INNER JOIN t_sujet ON theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
-                        INNER JOIN t_theme ON theme_avoir_sujet.Fk_sujet = t_theme.id_theme
-                        ORDER BY theme_avoir_sujet.id_theme_avoir_sujet ASC
+                        SELECT t_theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
+                        FROM t_theme_avoir_sujet
+                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
+                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_sujet = t_theme.id_theme
+                        ORDER BY t_theme_avoir_sujet.id_theme_avoir_sujet ASC
                     """
 
                     mc_afficher.execute(strsql_themesujet_afficher)
                 elif order_by == "ASC":
 
                     valeur_id_theme_avoir_sujet_selected_dictionnaire = {"value_id_theme_avoir_sujet_selected": id_theme_avoir_sujet_sel}
-                    strsql_themesujet_afficher = """SELECT * FROM theme_avoir_sujet WHERE id_theme_avoir_sujet = %(value_id_theme_avoir_sujet_selected)s"""
+                    strsql_themesujet_afficher = """SELECT * FROM t_theme_avoir_sujet WHERE id_theme_avoir_sujet = %(value_id_theme_avoir_sujet_selected)s"""
 
                     mc_afficher.execute(strsql_themesujet_afficher, valeur_id_theme_avoir_sujet_selected_dictionnaire)
                 else:
                     strsql_themesujet_afficher = """
                         SELECT theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
-                        FROM theme_avoir_sujet
-                        INNER JOIN t_sujet ON theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
-                        INNER JOIN t_theme ON theme_avoir_sujet.Fk_sujet = t_theme.id_theme
-                        ORDER BY theme_avoir_sujet.id_theme_avoir_sujet DESC
+                        FROM t_theme_avoir_sujet
+                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
+                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_sujet = t_theme.id_theme
+                        ORDER BY t_theme_avoir_sujet.id_theme_avoir_sujet DESC
                     """
 
 
@@ -56,7 +56,7 @@ def themesujet_afficher(order_by, id_theme_avoir_sujet_sel):
 
                 # Différencier les messages si la table est vide.
                 if not data_themesujet and id_theme_avoir_sujet_sel == 0:
-                    flash("""La table "theme_avoir_sujet" est vide. !!""", "warning")
+                    flash("""La table "t_theme_avoir_sujet" est vide. !!""", "warning")
                 elif not data_themesujet and id_theme_avoir_sujet_sel > 0:
                     flash(f"La personne demandé n'existe pas !!", "warning")
                 else:
@@ -86,8 +86,8 @@ def themesujet_ajouter_wtf():
                 }
                 print("valeurs_insertion_dictionnaire", valeurs_insertion_dictionnaire)
 
-                strsql_insertheme_avoir_sujet = """
-                    INSERT INTO theme_avoir_sujet ( Fk_theme, Fk_sujet)
+                strsql_insert_theme_avoir_sujet = """
+                    INSERT INTO t_theme_avoir_sujet ( Fk_theme, Fk_sujet)
                     SELECT t_theme.id_theme, t_sujet.id_sujet
                      FROM t_theme,t_sujet
                     WHERE t_theme.Nom_theme = %(value_nom_theme)s
@@ -95,7 +95,7 @@ def themesujet_ajouter_wtf():
                 """
 
                 with DBconnection() as mconn_bd:
-                    mconn_bd.execute(strsql_insertheme_avoir_sujet, valeurs_insertion_dictionnaire)
+                    mconn_bd.execute(strsql_insert_t_theme_avoir_sujet, valeurs_insertion_dictionnaire)
 
                 flash("Données insérées !!", "success")
                 print("Données insérées !!")
@@ -152,7 +152,7 @@ def themesujet_update_wtf():
             }
 
             str_sql_update_id_theme_avoir_sujet = """
-                UPDATE theme_avoir_sujet AS tas
+                UPDATE t_theme_avoir_sujet AS tas
                 INNER JOIN t_sujet ON tas.Fk_theme = t_sujet.id_sujet
                 INNER JOIN t_theme ON tas.Fk_sujet = t_theme.id_theme
                 SET tas.nom_theme = %(value_nom_theme)s,
@@ -170,11 +170,11 @@ def themesujet_update_wtf():
 
         elif request.method == "GET":
             str_sql_id_theme_avoir_sujet = """
-                SELECT theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
-                FROM theme_avoir_sujet
-                INNER JOIN t_sujet ON theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
-                INNER JOIN t_theme ON theme_avoir_sujet.Fk_sujet = t_theme.id_theme
-                ORDER BY theme_avoir_sujet.id_theme_avoir_sujet ASC
+                SELECT t_theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
+                FROM t_theme_avoir_sujet
+                INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
+                INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_sujet = t_theme.id_theme
+                ORDER BY t_theme_avoir_sujet.id_theme_avoir_sujet ASC
             """
             valeur_select_dictionnaire = {"value_id_theme_avoir_sujet": id_theme_avoir_sujet_update}
 
@@ -244,7 +244,7 @@ def themesujet_delete_wtf():
 
 
                 # Manière brutale d'effacer d'abord la "fk_personne", même si elle n'existe pas dans la "theme_avoir_sujet_film"
-                # Ensuite on peut effacer le personne vu qu'il n'est plus "lié" (INNODB) dans la "theme_avoir_sujet_film"
+                # Ensuite on peut effacer le personne vu qu'il n'est plus "lié" (INNODB) dans la "t_t_theme_avoir_sujet_film"
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(str_sql_delete_idpersonne, valeur_delete_dictionnaire)
                     mconn_bd.execute(str_sql_delete_idpersonne, valeur_delete_dictionnaire)
@@ -260,7 +260,7 @@ def themesujet_delete_wtf():
             print(id_theme_avoir_sujet_delete, type(id_theme_avoir_sujet_delete))
 
             # Requête qui affiche tous les films_personne qui ont le personne que l'utilisateur veut effacer
-            str_sql_personne_films_delete = """SELECT *FROM theme_avoir_sujet
+            str_sql_personne_films_delete = """SELECT *FROM t_t_t_theme_avoir_sujet
                                                         Where id_theme_avoir_sujet = %(value_id_theme_avoir_sujet)s"""
 
 
@@ -273,8 +273,8 @@ def themesujet_delete_wtf():
                 # le formulaire "personne/personne_delete_wtf.html" lorsque le bouton "Etes-vous sur d'effacer ?" est cliqué.
                 session['data_films_attribue_personne_delete'] = data_films_attribue_personne_delete
 
-                # Opération sur la BD pour récupérer "id_theme_avoir_sujet" et "intitule_personne" de la "theme_avoir_sujet"
-                str_sql_id_theme_avoir_sujet = "SELECT id_theme_avoir_sujet, Nom_personne, Prenom_personne FROM theme_avoir_sujet WHERE id_theme_avoir_sujet = %(value_id_theme_avoir_sujet)s"
+                # Opération sur la BD pour récupérer "id_theme_avoir_sujet" et "intitule_personne" de la "t_theme_avoir_sujet"
+                str_sql_id_theme_avoir_sujet = "SELECT id_theme_avoir_sujet, Nom_personne, Prenom_personne FROM t_theme_avoir_sujet WHERE id_theme_avoir_sujet = %(value_id_theme_avoir_sujet)s"
 
                 mydb_conn.execute(str_sql_id_theme_avoir_sujet, valeur_select_dictionnaire)
                 # Une seule valeur est suffisante "fetchone()",
