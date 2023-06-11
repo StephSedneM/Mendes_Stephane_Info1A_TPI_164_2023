@@ -16,20 +16,22 @@
 
 
 -- Listage de la structure de la base pour mendes_stephane_info1a_tpi_164_2023
+DROP DATABASE IF EXISTS `mendes_stephane_info1a_tpi_164_2023`;
 CREATE DATABASE IF NOT EXISTS `mendes_stephane_info1a_tpi_164_2023` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `mendes_stephane_info1a_tpi_164_2023`;
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_documentation
+DROP TABLE IF EXISTS `t_documentation`;
 CREATE TABLE IF NOT EXISTS `t_documentation` (
   `id_doc` int NOT NULL AUTO_INCREMENT,
   `Nom_doc` varchar(50) NOT NULL DEFAULT '',
-  `Type_doc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_doc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_documentation : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_doc_avoir_theme
+DROP TABLE IF EXISTS `t_doc_avoir_theme`;
 CREATE TABLE IF NOT EXISTS `t_doc_avoir_theme` (
   `id_doc_avoir_theme` int NOT NULL AUTO_INCREMENT,
   `Fk_Doc` int DEFAULT NULL,
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `t_doc_avoir_theme` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_doc_avoir_theme : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_interview
+DROP TABLE IF EXISTS `t_interview`;
 CREATE TABLE IF NOT EXISTS `t_interview` (
   `id_interview` int NOT NULL AUTO_INCREMENT,
   `Nom_Inter` int NOT NULL,
@@ -54,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `t_interview` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_interview : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_inter_avoir_sujet
+DROP TABLE IF EXISTS `t_inter_avoir_sujet`;
 CREATE TABLE IF NOT EXISTS `t_inter_avoir_sujet` (
   `id_inter_avoir_sujet` int NOT NULL AUTO_INCREMENT,
   `Fk_inter` int DEFAULT NULL,
@@ -68,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `t_inter_avoir_sujet` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_inter_avoir_sujet : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_inter_avoir_theme
+DROP TABLE IF EXISTS `t_inter_avoir_theme`;
 CREATE TABLE IF NOT EXISTS `t_inter_avoir_theme` (
   `id_inter_avoir_theme` int NOT NULL AUTO_INCREMENT,
   `Fk_inter` int DEFAULT NULL,
@@ -82,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `t_inter_avoir_theme` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_inter_avoir_theme : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_mail
+DROP TABLE IF EXISTS `t_mail`;
 CREATE TABLE IF NOT EXISTS `t_mail` (
   `id_mail` int NOT NULL AUTO_INCREMENT,
   `Adresse_mail` varchar(50) NOT NULL DEFAULT '',
@@ -99,6 +105,7 @@ INSERT INTO `t_mail` (`id_mail`, `Adresse_mail`) VALUES
 	(7, 'Canal115@local.com');
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_pays
+DROP TABLE IF EXISTS `t_pays`;
 CREATE TABLE IF NOT EXISTS `t_pays` (
   `id_pays` int NOT NULL AUTO_INCREMENT,
   `Pays` varchar(50) NOT NULL DEFAULT '',
@@ -108,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `t_pays` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_pays : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_personnes
+DROP TABLE IF EXISTS `t_personnes`;
 CREATE TABLE IF NOT EXISTS `t_personnes` (
   `id_personne` int NOT NULL AUTO_INCREMENT,
   `Prenom_personne` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -119,11 +127,12 @@ CREATE TABLE IF NOT EXISTS `t_personnes` (
 INSERT INTO `t_personnes` (`id_personne`, `Prenom_personne`, `Nom_personne`) VALUES
 	(1, 'Stéphane', 'Mendes '),
 	(2, 'Hermione', 'Granger'),
-	(3, 'Warwick', 'Malphite'),
+	(3, 'Draco', 'Malfoy'),
 	(4, 'Ron', 'Wealsley'),
 	(20, 'Harry', 'Potter');
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_personne_avoir_mail
+DROP TABLE IF EXISTS `t_personne_avoir_mail`;
 CREATE TABLE IF NOT EXISTS `t_personne_avoir_mail` (
   `id_personne_avoir_mail` int NOT NULL AUTO_INCREMENT,
   `Fk_personne` int DEFAULT NULL,
@@ -138,6 +147,7 @@ CREATE TABLE IF NOT EXISTS `t_personne_avoir_mail` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_personne_avoir_mail : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_personne_avoir_pays
+DROP TABLE IF EXISTS `t_personne_avoir_pays`;
 CREATE TABLE IF NOT EXISTS `t_personne_avoir_pays` (
   `id_personne_avoir_pays` int NOT NULL AUTO_INCREMENT,
   `Fk_personne` int DEFAULT NULL,
@@ -152,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `t_personne_avoir_pays` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_personne_avoir_pays : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_personne_avoir_telephone
+DROP TABLE IF EXISTS `t_personne_avoir_telephone`;
 CREATE TABLE IF NOT EXISTS `t_personne_avoir_telephone` (
   `id_personne_avoir_telephone` int NOT NULL AUTO_INCREMENT,
   `Fk_personne` int DEFAULT NULL,
@@ -166,11 +177,12 @@ CREATE TABLE IF NOT EXISTS `t_personne_avoir_telephone` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_personne_avoir_telephone : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_sujet
+DROP TABLE IF EXISTS `t_sujet`;
 CREATE TABLE IF NOT EXISTS `t_sujet` (
   `id_sujet` int NOT NULL AUTO_INCREMENT,
   `Nom_sujet` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_sujet`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_sujet : ~5 rows (environ)
 INSERT INTO `t_sujet` (`id_sujet`, `Nom_sujet`) VALUES
@@ -178,9 +190,11 @@ INSERT INTO `t_sujet` (`id_sujet`, `Nom_sujet`) VALUES
 	(2, 'Contract Apprentis'),
 	(3, 'Le l\'enfant et la famille'),
 	(9, 'Les apprentis deviennent fous avec ce module'),
-	(11, 'Norwood Scale');
+	(11, 'Norwood Scale'),
+	(12, 'Je par vers la Comté avec Frodo');
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_tel
+DROP TABLE IF EXISTS `t_tel`;
 CREATE TABLE IF NOT EXISTS `t_tel` (
   `id_tel` int NOT NULL AUTO_INCREMENT,
   `Nume_tel` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
@@ -190,6 +204,7 @@ CREATE TABLE IF NOT EXISTS `t_tel` (
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_tel : ~0 rows (environ)
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_theme
+DROP TABLE IF EXISTS `t_theme`;
 CREATE TABLE IF NOT EXISTS `t_theme` (
   `id_theme` int NOT NULL AUTO_INCREMENT,
   `Nom_Theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -206,6 +221,7 @@ INSERT INTO `t_theme` (`id_theme`, `Nom_Theme`) VALUES
 	(6, 'Droit');
 
 -- Listage de la structure de table mendes_stephane_info1a_tpi_164_2023. t_theme_avoir_sujet
+DROP TABLE IF EXISTS `t_theme_avoir_sujet`;
 CREATE TABLE IF NOT EXISTS `t_theme_avoir_sujet` (
   `id_theme_avoir_sujet` int NOT NULL AUTO_INCREMENT,
   `Fk_theme` int DEFAULT NULL,
@@ -215,13 +231,15 @@ CREATE TABLE IF NOT EXISTS `t_theme_avoir_sujet` (
   KEY `Fk_sujet_avoir_theme` (`Fk_sujet`),
   CONSTRAINT `Fk_sujet_avoir_theme` FOREIGN KEY (`Fk_sujet`) REFERENCES `t_sujet` (`id_sujet`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `Fk_theme_avoir_sujet` FOREIGN KEY (`Fk_theme`) REFERENCES `t_theme` (`id_theme`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table mendes_stephane_info1a_tpi_164_2023.t_theme_avoir_sujet : ~0 rows (environ)
 INSERT INTO `t_theme_avoir_sujet` (`id_theme_avoir_sujet`, `Fk_theme`, `Fk_sujet`) VALUES
 	(1, 6, 2),
 	(2, 5, 3),
-	(3, 4, 9);
+	(3, 4, 9),
+	(4, 2, 11),
+	(5, 4, 12);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
