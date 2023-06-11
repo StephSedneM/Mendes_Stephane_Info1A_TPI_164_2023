@@ -33,7 +33,7 @@ class FormWTFUpdateThemeSujet(FlaskForm):
 
     nom_sujet_update_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
     nom_sujet_update_wtf = StringField("Insérer le Nom", validators=[
-        Length(min=2, max=20, message=""),
+        Length(min=2, max=50, message=""),
         Regexp(nom_sujet_update_regexp, message="Essaye Encore mais que avec des lettres")
     ])
 

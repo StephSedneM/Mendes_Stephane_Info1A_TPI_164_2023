@@ -151,14 +151,14 @@ def themesujet_update_wtf():
                 "value_id_theme_avoir_sujet": id_theme_avoir_sujet_update
             }
 
-            str_sql_update_id_theme_avoir_sujet = """
-                UPDATE t_theme_avoir_sujet AS tas
-                INNER JOIN t_sujet ON tas.Fk_theme = t_sujet.id_sujet
-                INNER JOIN t_theme ON tas.Fk_sujet = t_theme.id_theme
-                SET tas.nom_theme = %(value_nom_theme)s,
-                    tas.value_nom_sujet = %(value_nom_sujet)s
-                WHERE tas.id_theme_avoir_sujet = %(value_id_theme_avoir_sujet)s
-            """
+            str_sql_update_id_theme_avoir_sujet =str_sql_update_id_theme_avoir_sujet = """
+             UPDATE t_theme_avoir_sujet AS tas
+             INNER JOIN t_sujet ON tas.Fk_theme = t_sujet.id_sujet
+            INNER JOIN t_theme ON tas.Fk_sujet = t_theme.id_theme
+            SET tas.nom_theme = %(value_nom_theme)s,
+            tas.Nom_sujet = %(value_nom_sujet)s
+            WHERE tas.id_theme_avoir_sujet = %(value_id_theme_avoir_sujet)s
+"""
 
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_id_theme_avoir_sujet, valeur_update_dictionnaire)
@@ -181,7 +181,15 @@ def themesujet_update_wtf():
             with DBconnection() as mybd_conn:
                 mybd_conn.execute(str_sql_id_theme_avoir_sujet, valeur_select_dictionnaire)
 
+
             data_themesujet = mybd_conn.fetchone()
+
+            if data_themesujet is not None:
+                form_update.nom_theme_update_wtf.data = data_themesujet["Nom_theme"]
+                form_update.nom_sujet_update_wtf.data = data_themesujet["Nom_sujet"]
+            else:
+                flash("Données non trouvées", "error")
+                return redirect(url_for('themesujet_afficher',order_by="ASC",id_theme_avoir_sujet_sel=id_theme_avoir_sujet_update))
 
             form_update.nom_theme_update_wtf.data = data_themesujet["Nom_theme"]
             form_update.nom_sujet_update_wtf.data = data_themesujet["Nom_sujet"]
