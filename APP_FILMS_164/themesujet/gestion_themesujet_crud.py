@@ -95,7 +95,7 @@ def themesujet_ajouter_wtf():
                 """
 
                 with DBconnection() as mconn_bd:
-                    mconn_bd.execute(strsql_insert_t_theme_avoir_sujet, valeurs_insertion_dictionnaire)
+                    mconn_bd.execute(strsql_insert_theme_avoir_sujet, valeurs_insertion_dictionnaire)
 
                 flash("Données insérées !!", "success")
                 print("Données insérées !!")
