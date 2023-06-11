@@ -26,8 +26,8 @@ def themesujet_afficher(order_by, id_theme_avoir_sujet_sel):
                     strsql_themesujet_afficher = """
                         SELECT t_theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
                         FROM t_theme_avoir_sujet
-                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
-                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_sujet = t_theme.id_theme
+                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_sujet = t_sujet.id_sujet
+                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_theme = t_theme.id_theme
                         ORDER BY t_theme_avoir_sujet.id_theme_avoir_sujet ASC
                     """
 
@@ -42,8 +42,8 @@ def themesujet_afficher(order_by, id_theme_avoir_sujet_sel):
                     strsql_themesujet_afficher = """
                         SELECT theme_avoir_sujet.id_theme_avoir_sujet, t_sujet.Nom_sujet, t_theme.Nom_Theme
                         FROM t_theme_avoir_sujet
-                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_theme = t_sujet.id_sujet
-                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_sujet = t_theme.id_theme
+                        INNER JOIN t_sujet ON t_theme_avoir_sujet.Fk_sujet = t_sujet.id_sujet
+                        INNER JOIN t_theme ON t_theme_avoir_sujet.Fk_theme = t_theme.id_theme
                         ORDER BY t_theme_avoir_sujet.id_theme_avoir_sujet DESC
                     """
 
